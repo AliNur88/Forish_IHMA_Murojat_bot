@@ -5,7 +5,10 @@ from telegram.ext import (
     ConversationHandler, CallbackQueryHandler
 )
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-
+import os
+from telegram.ext import Application
+TOKEN = os.environ.get("TOKENINGIZ")  # "BOT_TOKEN" o‘zgartuvchi nomi
+app = Application.builder().token(TOKEN).build()
 
 def get_main_menu(user_id):
     if user_id == ADMIN_ID:
@@ -136,10 +139,7 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("❌ Bekor qilindi.")
     return ConversationHandler.END
 
-import os
 
-TOKEN = os.environ.get("TOKENINGIZ")  # "BOT_TOKEN" o‘zgartuvchi nomi
-app = Application.builder().token(TOKEN).build()
 
 conv_handler = ConversationHandler(
     entry_points=[CommandHandler("start", start)],
