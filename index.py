@@ -7,7 +7,7 @@ from telegram.ext import (
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 import os
 from telegram.ext import Application
-TOKEN = os.environ.get("TOKENINGIZ")  # "BOT_TOKEN" o‘zgartuvchi nomi
+TOKEN = os.environ.get("BOT_TOKEN")  # "BOT_TOKEN" o‘zgartuvchi nomi
 app = Application.builder().token(TOKEN).build()
 
 def get_main_menu(user_id):
