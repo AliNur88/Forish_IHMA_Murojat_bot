@@ -1,4 +1,3 @@
-
 from telegram import Update, ReplyKeyboardMarkup, KeyboardButton
 from telegram.ext import (
     Application, CommandHandler, MessageHandler, filters, ContextTypes,
@@ -46,7 +45,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if user_id != ADMIN_ID:
         await update.message.reply_text(
-            "Assalom alaykum xurmatli fuqaro.\n Forish tuman 'INSON' ijtimoiy xizmatlar markazi murojaatlar botiga xush kelibsiz! \n Iltimos, quyidagilardan birini tanlang:",
+            "O'ZBEKISTON RESPUBLIKA PREZIDENTI HUZURIDAGI \n IJTIMOIY HIMOYA MILLIY AGENTLIGI \n Assalom alaykum xurmatli fuqaro.\n Forish tuman 'INSON' ijtimoiy xizmatlar markazi murojaatlar botiga xush kelibsiz! \n Iltimos, quyidagilardan birini tanlang:",
             reply_markup=get_main_menu(user_id)
         )
         return CHOOSING_TYPE
@@ -67,27 +66,27 @@ async def mahalla_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
     mahalla_nomi = query.data.replace("mahalla_", "")
     context.user_data["mahalla"] = mahalla_nomi
-    await query.message.edit_text(f"✅ Mahalla: @{mahalla_nomi} Iltimos, F.I.SH gizni kiriting:")
+    await query.message.edit_text(f"✅ Mahalla: {mahalla_nomi}\n Iltimos, F.I.SH gizni kiriting:\n ❗ Namuna: Aliyev Vali Ali o'g'li!")
     return GET_FULLNAME
 
 async def get_fullname(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["fullname"] = update.message.text
-    await update.message.reply_text("Yashash manzilingizni kiriting:")
+    await update.message.reply_text("Yashash manzilingizni kiriting:\n ❗ Namuna: Forish tumani/Garasha MFY/ Garasha qishlog'i/ Garasha ko'chasi/ 18-uy!")
     return GET_ADDRESS
 
 async def get_address(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["address"] = update.message.text
-    await update.message.reply_text("Tug‘ilgan yilingizni kiriting:")
+    await update.message.reply_text("Tug‘ilgan yilingizni kiriting:\n ❗ Namuna: 01.01.2000")
     return GET_BIRTHDATE
 
 async def get_birthdate(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["birthdate"] = update.message.text
-    await update.message.reply_text("Passport seriya va raqamingizni kiriting:")
+    await update.message.reply_text("Passport seriya va raqamingizni kiriting:\n ❗ Namuna: AD1234567")
     return GET_PASSPORT
 
 async def get_passport(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["passport"] = update.message.text
-    await update.message.reply_text("JSHSHIR raqamingizni kiriting (faqat raqam):")
+    await update.message.reply_text("JSHSHIR raqamingizni kiriting (faqat raqam):\n ❗ 14 xonali raqam")
     return GET_JSHSHIR
 
 async def get_jshshir(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -95,7 +94,7 @@ async def get_jshshir(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("❗ Iltimos, faqat raqam kiriting:")
         return GET_JSHSHIR
     context.user_data["jshshir"] = update.message.text
-    await update.message.reply_text("Telefon raqamingizni kiriting (faqat raqam):")
+    await update.message.reply_text("Telefon raqamingizni kiriting (faqat raqam):\n ❗ Namuna: 97-000-01-00")
     return GET_PHONE
 
 async def get_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -103,7 +102,7 @@ async def get_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("❗ Iltimos, faqat raqam kiriting:")
         return GET_PHONE
     context.user_data["phone"] = update.message.text
-    await update.message.reply_text("Endi murojaatingizni yozing:")
+    await update.message.reply_text("Endi murojaatingizni yozing:\n ❗ Murojatingizni to'liq bayon qiling va to'g'ri va aniqliligiga e'tiborli bo'ling!")
     return GET_MESSAGE
 
 async def get_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -121,7 +120,7 @@ Telefon: {context.user_data['phone']}
 Murojaat matni: {context.user_data['message']}
 Foydalanuvchi: {username}"""
     await context.bot.send_message(chat_id=ADMIN_ID, text=msg)
-    await update.message.reply_text("✅ Murojaatingiz qabul qilindi. Rahmat! /start tugmasini bosib botni qayta boshlang.")
+    await update.message.reply_text("✅ Murojaatingiz qabul qilindi. Rahmat! \n Qayta murojat yo'llash uchun /start tugmasini bosib botni qayta ishga tushuring.")
     return ConversationHandler.END
 
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
