@@ -1,0 +1,1 @@
+<siz yuborgan index.py kodi shu yerga joylashtiriladi>
