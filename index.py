@@ -1,3 +1,4 @@
+
 from telegram import Update, ReplyKeyboardMarkup, KeyboardButton
 from telegram.ext import (
     Application, CommandHandler, MessageHandler, filters, ContextTypes,
@@ -45,10 +46,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if user_id != ADMIN_ID:
         await update.message.reply_text(
-            "Assalom alaykum xurmatli fuqaro.
-Forish tuman 'INSON' ijtimoiy xizmatlar markazi murojaatlar botiga xush kelibsiz!
-"
-            "Iltimos, quyidagilardan birini tanlang:",
+            "Assalom alaykum xurmatli fuqaro.\n Forish tuman 'INSON' ijtimoiy xizmatlar markazi murojaatlar botiga xush kelibsiz! \n Iltimos, quyidagilardan birini tanlang:",
             reply_markup=get_main_menu(user_id)
         )
         return CHOOSING_TYPE
@@ -69,9 +67,7 @@ async def mahalla_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
     mahalla_nomi = query.data.replace("mahalla_", "")
     context.user_data["mahalla"] = mahalla_nomi
-    await query.message.edit_text(f"✅ Mahalla: {mahalla_nomi}
-
-Iltimos, F.I.SH gizni kiriting:")
+    await query.message.edit_text(f"✅ Mahalla: @{mahalla_nomi} Iltimos, F.I.SH gizni kiriting:")
     return GET_FULLNAME
 
 async def get_fullname(update: Update, context: ContextTypes.DEFAULT_TYPE):
